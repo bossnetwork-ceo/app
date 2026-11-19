@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 560" role="img" aria-label="BOSS Network"><title>BOSS Network</title><defs>
+<linearGradient id="bullgold" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#fff1b8"/><stop offset=".35" stop-color="#f5c542"/><stop offset=".7" stop-color="#b8860b"/><stop offset="1" stop-color="#f5c542"/></linearGradient>
+<linearGradient id="bullgoldText" gradientUnits="userSpaceOnUse" x1="0" y1="404" x2="0" y2="480">
+<stop offset="0" stop-color="#fff1b8"/><stop offset=".45" stop-color="#f5c542"/><stop offset=".55" stop-color="#c8920e"/><stop offset="1" stop-color="#f5c542"/></linearGradient>
+<radialGradient id="bullglow"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#fff7d6"/><stop offset="1" stop-color="#fff7d6" stop-opacity="0"/></radialGradient>
+</defs><rect width="512" height="560" rx="48" style="fill:#12141c"/><g>
+<polygon points="186,138 132,146 90,118 66,54 102,96 142,118 190,120" style="fill:#fb923c"/><polygon points="326,138 380,146 422,118 446,54 410,96 370,118 322,120" style="fill:#fb923c"/><polygon points="326,138 380,146 422,118 446,54 410,96 370,118 322,120" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="190,120 142,118 102,96 66,54 84,108 132,146 186,138" style="fill:#ea580c"/><polygon points="322,120 370,118 410,96 446,54 428,108 380,146 326,138" style="fill:#ea580c"/><polygon points="322,120 370,118 410,96 446,54 428,108 380,146 326,138" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="66,54 76,90 90,118 102,96" style="fill:#14100c"/><polygon points="446,54 436,90 422,118 410,96" style="fill:#14100c"/><polygon points="446,54 436,90 422,118 410,96" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="170,168 116,190 138,206 174,202" style="fill:#ea580c"/><polygon points="342,168 396,190 374,206 338,202" style="fill:#ea580c"/><polygon points="342,168 396,190 374,206 338,202" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="170,168 138,206 174,202" style="fill:#fb923c"/><polygon points="342,168 374,206 338,202" style="fill:#fb923c"/><polygon points="342,168 374,206 338,202" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="176,118 256,122 214,190" style="fill:#ea580c"/><polygon points="336,118 256,122 298,190" style="fill:#ea580c"/><polygon points="336,118 256,122 298,190" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="176,118 214,190 166,170" style="fill:#fb923c"/><polygon points="336,118 298,190 346,170" style="fill:#fb923c"/><polygon points="336,118 298,190 346,170" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="166,170 214,190 176,252" style="fill:#ea580c"/><polygon points="346,170 298,190 336,252" style="fill:#ea580c"/><polygon points="346,170 298,190 336,252" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="214,190 256,122 298,190 256,236" style="fill:#f4f4f5"/>
+<polygon points="256,122 298,190 256,236" style="fill:#d4d4d8"/>
+<polygon points="198,208 234,216 206,222" style="fill:#fb923c"/><polygon points="314,208 278,216 306,222" style="fill:#fb923c"/><polygon points="314,208 278,216 306,222" style="fill:rgba(0,0,0,.28)"/><circle cx="214" cy="214" r="16" style="fill:url(#bullglow);opacity:.55"/><circle cx="298" cy="214" r="16" style="fill:url(#bullglow);opacity:.55"/><polygon points="204,212 228,216 210,219" style="fill:#fff"/><polygon points="308,212 284,216 302,219" style="fill:#fff"/>
+<polygon points="176,252 214,190 256,236 226,300 198,298" style="fill:#d4d4d8"/><polygon points="336,252 298,190 256,236 286,300 314,298" style="fill:#d4d4d8"/><polygon points="336,252 298,190 256,236 286,300 314,298" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="176,252 198,298 210,356 190,312" style="fill:#ea580c"/><polygon points="336,252 314,298 302,356 322,312" style="fill:#ea580c"/><polygon points="336,252 314,298 302,356 322,312" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="198,298 226,300 214,356" style="fill:#fb923c"/><polygon points="314,298 286,300 298,356" style="fill:#fb923c"/><polygon points="314,298 286,300 298,356" style="fill:rgba(0,0,0,.28)"/>
+<polygon points="226,300 256,236 286,300 256,292" style="fill:#d4d4d8"/>
+<polygon points="226,300 256,292 286,300 304,360 256,394 208,360" style="fill:#f4f4f5"/>
+<polygon points="256,292 286,300 304,360 256,394" style="fill:#d4d4d8"/>
+<polygon points="208,360 214,356 226,300" style="fill:#ea580c"/><polygon points="304,360 298,356 286,300" style="fill:#ea580c"/><polygon points="304,360 298,356 286,300" style="fill:rgba(0,0,0,.28)"/>
+<ellipse cx="236" cy="352" rx="9" ry="6" style="fill:#14100c"/><ellipse cx="276" cy="352" rx="9" ry="6" style="fill:#14100c"/>
+<polygon points="232,376 256,386 280,376 256,394" style="fill:#d4d4d8"/>
+</g><g>
+<polygon points="176,112 164,40 210,80 232,30 256,6 280,30 302,80 348,40 336,112" style="fill:url(#bullgold);stroke:#14100c;stroke-width:3;stroke-linejoin:round"/>
+<polygon points="256,6 280,30 256,96 232,30" style="fill:rgba(255,255,255,.22)"/>
+<polygon points="164,40 210,80 196,112 176,112" style="fill:rgba(255,255,255,.18)"/>
+<polygon points="348,40 302,80 316,112 336,112" style="fill:rgba(0,0,0,.18)"/>
+<rect x="170" y="98" width="172" height="22" rx="4" style="fill:url(#bullgold);stroke:#14100c;stroke-width:3"/>
+<polygon points="256,62 274,86 256,112 238,86" style="fill:#ea580c;stroke:#14100c;stroke-width:2.5"/>
+<polygon points="256,62 274,86 256,86" style="fill:rgba(255,255,255,.35)"/>
+<circle cx="164" cy="40" r="6" style="fill:url(#bullgold);stroke:#14100c;stroke-width:2"/>
+<circle cx="348" cy="40" r="6" style="fill:url(#bullgold);stroke:#14100c;stroke-width:2"/>
+<circle cx="256" cy="6" r="5" style="fill:url(#bullgold);stroke:#14100c;stroke-width:2"/>
+</g><g>
+<path d="M71,413 H127 L139,425 V434 L131,442 L141,450 V459 L129,471 H71 Z M71,442 H131 M181,413 H231 L241,423 V461 L231,471 H181 L171,461 V423 Z M341,413 H281 L271,423 V434 L279,442 H333 L341,450 V461 L331,471 H271 M441,413 H381 L371,423 V434 L379,442 H433 L441,450 V461 L431,471 H371" style="fill:none;stroke:#14100c;stroke-width:30;stroke-linejoin:miter;stroke-linecap:square"/>
+<path d="M71,413 H127 L139,425 V434 L131,442 L141,450 V459 L129,471 H71 Z M71,442 H131 M181,413 H231 L241,423 V461 L231,471 H181 L171,461 V423 Z M341,413 H281 L271,423 V434 L279,442 H333 L341,450 V461 L331,471 H271 M441,413 H381 L371,423 V434 L379,442 H433 L441,450 V461 L431,471 H371" style="fill:none;stroke:url(#bullgoldText);stroke-width:20;stroke-linejoin:miter;stroke-linecap:square"/>
+<path d="M71,413 H127 L139,425 V434 L131,442 L141,450 V459 L129,471 H71 Z M71,442 H131 M181,413 H231 L241,423 V461 L231,471 H181 L171,461 V423 Z M341,413 H281 L271,423 V434 L279,442 H333 L341,450 V461 L331,471 H271 M441,413 H381 L371,423 V434 L379,442 H433 L441,450 V461 L431,471 H371" style="fill:none;stroke:rgba(255,255,255,.45);stroke-width:3;stroke-linejoin:miter;transform:translate(-3px,-3px)"/>
+<polygon points="62,511 86,490 426,490 450,511 426,532 86,532" style="fill:#ea580c;stroke:url(#bullgold);stroke-width:5;stroke-linejoin:round"/>
+<polygon points="86,490 426,490 440,502 72,502" style="fill:rgba(255,255,255,.14)"/>
+<polygon points="40,511 58,492 70,492 52,511 70,530 58,530" style="fill:url(#bullgold)"/>
+<polygon points="472,511 454,492 442,492 460,511 442,530 454,530" style="fill:url(#bullgold)"/>
+<text x="256" y="521" text-anchor="middle" style="fill:#fff;font:800 27px 'Plus Jakarta Sans',Arial,Helvetica,sans-serif;letter-spacing:11px">NETWORK</text>
+</g></svg>
