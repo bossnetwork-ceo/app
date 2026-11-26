@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BOSS Network White Paper</title>
+<meta name="description" content="BOSS Network white paper: the BOSS token, tokenomics, vesting, rewards plan and smart contracts on BNB Smart Chain.">
+<meta name="theme-color" content="#ea580c">
+<link rel="icon" type="image/svg+xml" href="/icon.svg?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  Static page, copied into dist by Vite and served at /whitepaper/. The tokenomics numbers repeat
+  src/config/tokenomics.js as literals (a static page can't import JS): change both together.
+  Honesty rule: the 30% reserve and 10% founders share are NOT locked on-chain yet. Keep "planned"
+  wording until a lock contract holds them.
+-->
+<style>
+  :root {
+    --brand: #ea580c; --brand-2: #fb923c; --gold: #f5c542;
+    --bg: #f6f7fb; --paper: #ffffff; --ink: #14161f; --muted: #5b6170; --line: #e5e7f0; --soft: #f3f4f9;
+    --cover: #0b0d13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b0d13; --paper: #12141c; --ink: #f1f2f6; --muted: #a0a6b5; --line: #262a36; --soft: #1a1d27; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.65 "Plus Jakarta Sans", Arial, Helvetica, sans-serif; }
+  a { color: var(--brand); font-weight: 600; text-underline-offset: 2px; }
+  code { font: 600 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
+  .toolbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 8px; justify-content: flex-end; padding: 10px 16px; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); }
+  .btn { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 12px; padding: 9px 14px; font: 700 13.5px "Plus Jakarta Sans", Arial, sans-serif; cursor: pointer; text-decoration: none; }
+  .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; }
+  .btn-ghost { background: var(--soft); color: var(--ink); }
+  main { max-width: 860px; margin: 0 auto; padding: 0 16px 48px; }
+  .page { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 40px 44px; margin-top: 16px; }
+  @media (max-width: 640px) { .page { padding: 26px 20px; border-radius: 20px; } }
+
+  /* Cover */
+  .cover { background: radial-gradient(120% 80% at 50% 0%, #2a1406 0%, var(--cover) 60%); color: #fff; border: 0; text-align: center; padding: 48px 32px 40px; overflow: hidden; }
+  .logos { display: flex; justify-content: center; gap: 4%; }
+  .logos img { width: 44%; max-width: 320px; height: auto; display: block; }
+  .cover .eyebrow { color: var(--gold); }
+  .cover h1 { margin: 20px 0 6px; font-size: clamp(30px, 6vw, 46px); line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+  .cover .tag { margin: 0; font-size: 17px; font-weight: 600; color: rgba(255,255,255,.88); }
+  .cover .meta { margin-top: 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 13.5px; color: rgba(255,255,255,.72); }
+  .cover .meta a { color: var(--brand-2); }
+
+  .eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin: 0; }
+  h2 { font-size: 26px; line-height: 1.15; margin: 6px 0 14px; font-weight: 800; letter-spacing: -.01em; }
+  h3 { font-size: 17px; margin: 22px 0 6px; font-weight: 800; }
+  p { margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  .lead { font-size: 16.5px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 4px 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 800; }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  .table-wrap { overflow-x: auto; }
+
+  .alloc { display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: center; margin: 8px 0 18px; }
+  @media (max-width: 640px) { .alloc { grid-template-columns: 1fr; justify-items: center; } }
+  .donut { position: relative; width: 220px; height: 220px; }
+  .donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .donut .center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .donut .center b { font-size: 30px; font-weight: 800; line-height: 1; }
+  .donut .center span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 4px; }
+  .legend { display: grid; gap: 8px; width: 100%; }
+  .legend div { display: flex; align-items: center; gap: 10px; background: var(--soft); border-radius: 14px; padding: 9px 12px; }
+  .legend i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+  .legend span { flex: 1; font-weight: 600; }
+  .legend b { font-weight: 800; }
+
+  .chip { display: inline-block; border-radius: 999px; padding: 2px 9px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+  .chip-live { background: color-mix(in srgb, var(--brand) 14%, transparent); color: var(--brand); }
+  .chip-plan { background: rgba(245,158,11,.15); color: #b45309; }
+  @media (prefers-color-scheme: dark) { .chip-plan { color: #fbbf24; } }
+
+  .note { background: rgba(245,197,66,.12); border-radius: 16px; padding: 14px 16px; margin: 14px 0; }
+  .note p:last-child { margin: 0; }
+  .grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 10px 0 14px; }
+  @media (max-width: 640px) { .grid4 { grid-template-columns: 1fr; } }
+  .box { background: var(--soft); border-radius: 16px; padding: 14px 16px; }
+  .box b { display: block; font-size: 15px; }
+  .box .rate { color: var(--brand); font-weight: 800; font-size: 13px; }
+  .box p { margin: 6px 0 0; font-size: 13.5px; color: var(--muted); }
+  ol.road { counter-reset: r; list-style: none; padding: 0; }
+  ol.road li { counter-increment: r; position: relative; padding: 10px 0 10px 44px; border-bottom: 1px solid var(--line); }
+  ol.road li::before { content: counter(r); position: absolute; left: 0; top: 9px; width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; font-weight: 800; font-size: 13px; }
+  footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 22px; }
+
+  /* Print: A4, white paper, one chapter per page; the cover keeps its dark panel. */
+  @page { size: A4; margin: 16mm; }
+  @media print {
+    :root { --bg: #fff; --paper: #fff; --ink: #14161f; --muted: #4b5160; --line: #dfe2ea; --soft: #f3f4f9; }
+    body { font-size: 11pt; background: #fff; }
+    .toolbar { display: none; }
+    main { max-width: none; padding: 0; }
+    .page { border: 0; border-radius: 0; padding: 0; margin: 0; break-before: page; }
+    .page.cover { break-before: auto; padding: 18mm 10mm; border-radius: 0; min-height: 255mm; display: flex; flex-direction: column; justify-content: center; }
+    .cover, .btn-primary, ol.road li::before, .legend i, .chip, .note, .box, .legend div { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .chip-plan { color: #b45309; }
+    h2, h3 { break-after: avoid; }
+    table, .box, .alloc, .note { break-inside: avoid; }
+    a { color: var(--brand); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a class="btn btn-ghost" href="/about/tokenomics">Back to the app</a>
+  <button class="btn btn-primary" type="button" onclick="window.print()">Download PDF</button>
+</div>
+
+<main>
+  <!-- 1. Cover -->
+  <section class="page cover">
+    <div class="logos">
+      <img src="/boss-logo-bull.webp" alt="BOSS Network bull emblem" width="720" height="720">
+      <img src="/boss-logo-bear.webp" alt="BOSS Network bear emblem" width="720" height="720">
+    </div>
+    <h1>BOSS Network<br>White Paper</h1>
+    <p class="tag">Building Opportunities, Skills, and Success</p>
+    <div class="meta">
+      <span>Version 1.0 · November 2026</span>
+      <a href="https://bossnetwork.pro">bossnetwork.pro</a>
+      <a href="mailto:ceo@bossnetwork.com">ceo@bossnetwork.com</a>
+    </div>
+  </section>
+
+  <!-- 2. Abstract -->
+  <section class="page">
+    <p class="eyebrow">Abstract</p>
+    <h2>A community network on BNB Smart Chain</h2>
+    <p class="lead">BOSS Network is a membership community on BNB Smart Chain (BSC). BOSS stands for <b>Building Opportunities, Skills, and Success</b>, the three things the network is built around.</p>
+    <p>Members join under a sponsor, deposit USDT and activate tiers. Every activation feeds a published rewards plan (referral, daily, generation and leadership rewards) and also builds a position in the <b>BOSS token</b>, released to the member monthly over five years.</p>
+    <p>Everything that matters runs in smart contracts on BSC: membership, deposits, tier activation, reward accounting, the reward pool, vesting and the BOSS/USDT market. The rules are the same for every member, and every balance described in this paper can be checked on BscScan.</p>
+    <p class="muted">This paper describes the BOSS token, its tokenomics, the vesting mode, the rewards plan, the market and the contracts, and closes with the roadmap and the risks.</p>
+  </section>
+
+  <!-- 3. The BOSS token -->
+  <section class="page">
+    <p class="eyebrow">The token</p>
+    <h2>BOSS</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Name</th><td>BOSSNETWORK</td></tr>
+      <tr><th>Symbol</th><td>BOSS</td></tr>
+      <tr><th>Chain</th><td>BNB Smart Chain (BEP-20)</td></tr>
+      <tr><th>Decimals</th><td>18</td></tr>
+      <tr><th>Maximum supply</th><td>1,000,000,000 BOSS (no minting; burnable)</td></tr>
+      <tr><th>Contract</th><td><a href="https://bscscan.com/token/0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00"><code>0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00</code></a></td></tr>
+      <tr><th>Ownership</th><td>Renounced (owner is the zero address)</td></tr>
+      <tr><th>Transfer tax</th><td>None</td></tr>
+    </table></div>
+    <p>The full 1,000,000,000 BOSS was minted once at deployment and there is no mint function, so the supply can never grow; it can only fall when BOSS is burned. Ownership was renounced in the same transaction, so the token has no admin: no one can change its rules, pause transfers or add a fee. Anyone can create a token named BOSS, so always check the contract address above, not the name.</p>
+  </section>
+
+  <!-- 4. Tokenomics -->
+  <section class="page">
+    <p class="eyebrow">Tokenomics</p>
+    <h2>Allocation of 1,000,000,000 BOSS</h2>
+    <div class="alloc">
+      <div class="donut">
+        <svg viewBox="0 0 42 42" role="img" aria-label="BOSS allocation: 50% vesting, 30% locked reserve, 10% community, 10% founders">
+          <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--line)" stroke-width="6"/>
+          <circle cx="21" cy="21" r="15.915" fill="none" stroke="#ea580c" stroke-width="6" stroke-dasharray="49.4 50.6" stroke-dashoffset="0"/>
+          <circle cx="21" cy="21" r="15.915" fill="none" stroke="#64748b" stroke-width="6" stroke-dasharray="29.4 70.6" stroke-dashoffset="-50"/>
+          <circle cx="21" cy="21" r="15.915" fill="none" stroke="#f5c542" stroke-width="6" stroke-dasharray="9.4 90.6" stroke-dashoffset="-80"/>
+          <circle cx="21" cy="21" r="15.915" fill="none" stroke="#14b8a6" stroke-width="6" stroke-dasharray="9.4 90.6" stroke-dashoffset="-90"/>
+        </svg>
+        <div class="center"><b>1B</b><span>Total BOSS</span></div>
+      </div>
+      <div class="legend">
+        <div><i style="background:#ea580c"></i><span>Vesting</span><b>50%</b></div>
+        <div><i style="background:#64748b"></i><span>Locked reserve</span><b>30%</b></div>
+        <div><i style="background:#f5c542"></i><span>Community</span><b>10%</b></div>
+        <div><i style="background:#14b8a6"></i><span>Founders</span><b>10%</b></div>
+      </div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <tr><th>Allocation</th><th class="num">Share</th><th class="num">BOSS</th><th>Status</th></tr>
+      <tr><td>Vesting</td><td class="num">50%</td><td class="num">500,000,000</td><td><span class="chip chip-live">Live</span></td></tr>
+      <tr><td>Locked reserve</td><td class="num">30%</td><td class="num">300,000,000</td><td><span class="chip chip-plan">Lock contract planned</span></td></tr>
+      <tr><td>Community</td><td class="num">10%</td><td class="num">100,000,000</td><td><span class="chip chip-live">Live</span></td></tr>
+      <tr><td>Founders</td><td class="num">10%</td><td class="num">100,000,000</td><td><span class="chip chip-plan">5-year lock planned</span></td></tr>
+      <tr><td><b>Total</b></td><td class="num"><b>100%</b></td><td class="num"><b>1,000,000,000</b></td><td></td></tr>
+    </table></div>
+
+    <h3>Vesting · 50%</h3>
+    <p>500,000,000 BOSS sit in the vesting contract <a href="https://bscscan.com/token/0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00?a=0x10E5dcA5748B99a1877CEA5A1c83Fa200173D324"><code>0x10E5…D324</code></a>. This is the members' share: each tier activation reserves BOSS worth the activation for that member, released monthly over 60 months (see Vesting mode). BOSS that no position has reserved stays in the contract.</p>
+
+    <h3>Locked reserve · 30%</h3>
+    <p>300,000,000 BOSS are set aside as a long-term reserve, to be moved into a dedicated lock contract. <b>That contract is not deployed yet.</b> Until it is, the reserve is held by the deployer wallet <a href="https://bscscan.com/token/0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00?a=0x2Fd3A13c824E8676865c56e4Cb3c006030671820"><code>0x2Fd3…1820</code></a>.</p>
+
+    <h3>Community · 10%</h3>
+    <p>100,000,000 BOSS fund the community: rewards, airdrops and campaigns, and the BOSS that provides market liquidity in the BOSS/USDT pool on PancakeSwap and in the BOSS Network liquidity contract.</p>
+
+    <h3>Founders · 10%</h3>
+    <p>100,000,000 BOSS belong to the founders and are to be strategically locked for 5 years, aligning the founders with the long-term network. <b>The lock contract is still to come;</b> until then this share is held by the deployer wallet.</p>
+
+    <div class="note"><p><b>Verify it yourself.</b> Every holder above can be checked on BscScan. The 30% reserve and the 10% founders share are not yet locked on-chain; this paper will be updated with the lock contract addresses once they are deployed.</p></div>
+  </section>
+
+  <!-- 5. Vesting mode -->
+  <section class="page">
+    <p class="eyebrow">Vesting mode</p>
+    <h2>How members receive BOSS</h2>
+    <ol class="road">
+      <li><b>Activation creates a position.</b> When a member activates a tier, the vesting contract reserves BOSS worth the activation amount, at the token's market price at that moment.</li>
+      <li><b>Released over 60 months.</b> The position is split into 60 equal monthly parts. A new part unlocks every 30 days, counted from the activation date.</li>
+      <li><b>Claim any time.</b> One claim collects every unlocked month across all positions. Skipped months are never lost; they add up until claimed.</li>
+    </ol>
+    <div class="note"><p><b>Example.</b> A $100 activation with BOSS at $0.01 reserves 10,000 BOSS, released as about 166.67 BOSS a month for 60 months.</p></div>
+    <p class="muted">The vesting contract can only release BOSS it holds. If a position cannot be fully covered, the activation still goes through without a BOSS position; positions are never partial.</p>
+  </section>
+
+  <!-- 6. Rewards plan -->
+  <section class="page">
+    <p class="eyebrow">Rewards plan</p>
+    <h2>Tiers and four ways to earn</h2>
+    <p>Members deposit USDT (BEP-20, minimum 50) and activate tiers from their wallet balance. Tiers open in order and each gives a <b>capping</b>, the most it can earn.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Tier</th><th class="num">Capping</th><th>Opens</th></tr>
+      <tr><td>$50</td><td class="num">3x · 150 USDT</td><td>At registration</td></tr>
+      <tr><td>$100</td><td class="num">3x · 300 USDT</td><td>At registration</td></tr>
+      <tr><td>$200</td><td class="num">3x · 600 USDT</td><td>60 days after the first activation, or when $50 and $100 have both capped</td></tr>
+      <tr><td>$400</td><td class="num">3x · 1,200 USDT</td><td>Same as $200</td></tr>
+      <tr><td>$800</td><td class="num">3x · 2,400 USDT</td><td>120 days after the first activation, or when $200 and $400 have both capped</td></tr>
+      <tr><td>$1,600</td><td class="num">2x · 3,200 USDT</td><td>Same as $800; can be activated again when its capping runs out</td></tr>
+    </table></div>
+    <div class="grid4">
+      <div class="box"><b>Referral</b><span class="rate">5–10%</span><p>A share of each activation by a direct referral: 5% for the first five active directs, 10% from the sixth onward.</p></div>
+      <div class="box"><b>Daily</b><span class="rate">1% a day</span><p>Every active tier earns 1% of its value each day, collected once every 24 hours.</p></div>
+      <div class="box"><b>Generation</b><span class="rate">10% · 10 levels</span><p>10% of each daily reward collected by members on your 1st to 10th level.</p></div>
+      <div class="box"><b>Leadership pool</b><span class="rate">5% · top 10</span><p>5% of every activation goes into a monthly pool, shared by the top 10 sponsors by direct volume.</p></div>
+    </div>
+    <p>All rewards need an active tier with capping left, and use the oldest tier's capping first. Withdrawals are 20 to 100 USDT in steps of 20, once every 24 hours, with a 10% fee.</p>
+    <div class="note"><p><b>Where daily and generation income come from.</b> They are paid from <b>trading profits that fund the reward pool</b>, never from member deposits. When the pool is short, that part of a withdrawal waits until the pool is funded.</p></div>
+  </section>
+
+  <!-- 7. Market and liquidity -->
+  <section class="page">
+    <p class="eyebrow">Market</p>
+    <h2>Trading BOSS</h2>
+    <ul>
+      <li><b>Pool:</b> BOSS/USDT on PancakeSwap V3, 1% fee tier (<code>0xb0c605eA36577d4cdb47a28bC2FD09651B3225eB</code>).</li>
+      <li><b>Launch price:</b> 0.01 USDT per BOSS (100 BOSS per USDT). The price is not fixed; it moves with every trade.</li>
+      <li><b>Buy</b> on the app's Swap page, which routes through the BOSS Network liquidity contract into the pool, or directly on <a href="https://pancake.xyz/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&amp;outputCurrency=0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00&amp;chain=bsc">PancakeSwap</a>.</li>
+      <li><b>Sell</b> on the Swap page through the official PancakeSwap V3 router, into the same pool.</li>
+      <li><b>Price and chart:</b> <a href="https://dex.coinmarketcap.com/token/bsc/0x58cd0feea37e9039f3e2f21f63385ba66253cd00/">CoinMarketCap DEX</a>.</li>
+    </ul>
+    <p class="muted">The pool is still small, so large trades move the price. The app simulates every swap before sending it and shows the expected price impact.</p>
+  </section>
+
+  <!-- 8. Smart contracts -->
+  <section class="page">
+    <p class="eyebrow">Smart contracts</p>
+    <h2>Deployed on BNB Smart Chain</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Contract</th><th>Address</th></tr>
+      <tr><td>BOSS token</td><td><code>0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00</code></td></tr>
+      <tr><td>Accounts</td><td><code>0x1e20710795233f3e5FA896E83f51CF161Ce14D44</code></td></tr>
+      <tr><td>Register</td><td><code>0xf5dAcfF8C52F12d4d6f74697cDC716523627c7B9</code></td></tr>
+      <tr><td>Gateway</td><td><code>0x80FcffC93B322c616B9CFF43202EAEE638173918</code></td></tr>
+      <tr><td>Rewards</td><td><code>0xe4AD499B327c51286f5d0fCC11b89A79Aa2d7d81</code></td></tr>
+      <tr><td>Funder (treasury)</td><td><code>0xe68A01fc1DAf94E1BD942E1076f3A050ad0ed9aF</code></td></tr>
+      <tr><td>Vesting</td><td><code>0x10E5dcA5748B99a1877CEA5A1c83Fa200173D324</code></td></tr>
+      <tr><td>Liquidity</td><td><code>0x407B27ace7CaEAF47A92C40fcc0cb4a5aB3b8DaC</code></td></tr>
+      <tr><td>Exchanger disbursement</td><td><code>0x49C4a4d1Ba1Af1ee9BFe277947be00d86bADaE12</code></td></tr>
+    </table></div>
+    <p>The network contracts went through an internal security review in November 2026, and each change touching funds or permissions is tested before deployment. An internal review is not an independent audit.</p>
+  </section>
+
+  <!-- 9. Roadmap -->
+  <section class="page">
+    <p class="eyebrow">Roadmap</p>
+    <h2>Next steps</h2>
+    <ol class="road">
+      <li><b>Reserve lock contract.</b> Deploy the lock contract and move the 300,000,000 BOSS reserve into it.</li>
+      <li><b>Founders' 5-year lock.</b> Lock the 100,000,000 BOSS founders share for 5 years on-chain.</li>
+      <li><b>Exchanger wallets and reward pool.</b> Add exchanger wallets and fund the reward pool from trading.</li>
+      <li><b>Deeper liquidity.</b> Grow the BOSS/USDT pool so larger trades move the price less.</li>
+    </ol>
+    <p class="muted">This paper will be updated with the lock contract addresses as each step is completed.</p>
+  </section>
+
+  <!-- 10. Risks -->
+  <section class="page">
+    <p class="eyebrow">Risks and disclaimer</p>
+    <h2>Read before taking part</h2>
+    <ul>
+      <li><b>No guaranteed profits.</b> BOSS Network does not promise returns. Daily and generation rewards depend on trading profits funding the reward pool, and trading carries risk of loss.</li>
+      <li><b>Market risk.</b> The BOSS price can fall as well as rise, and the pool is still small.</li>
+      <li><b>Smart-contract risk.</b> Contracts can contain bugs despite testing and review.</li>
+      <li><b>Treasury.</b> A share of each activation goes to the project's trading wallet, and the treasury owner can move USDT to it; withdrawals can wait when the pool or treasury is short.</li>
+      <li><b>Regulation.</b> A fixed return can be a regulated product in some countries. Get advice for your own jurisdiction.</li>
+    </ul>
+    <p>This white paper is for information only. It is not financial, investment or legal advice, and not an offer to sell securities. Only take part with what you can afford to lose.</p>
+  </section>
+
+  <!-- 11. Contact -->
+  <section class="page" style="text-align:center">
+    <p class="eyebrow">Contact</p>
+    <h2>BOSS Network</h2>
+    <p class="lead">Building Opportunities, Skills, and Success</p>
+    <p>Website: <a href="https://bossnetwork.pro">bossnetwork.pro</a><br>Email: <a href="mailto:ceo@bossnetwork.com">ceo@bossnetwork.com</a></p>
+    <p class="muted">BOSS token: <code>0x58cd0fEEA37e9039F3E2f21f63385ba66253cD00</code></p>
+  </section>
+
+  <footer>© 2026 BOSS Network · White Paper v1.0 · November 2026</footer>
+</main>
+</body>
+</html>
